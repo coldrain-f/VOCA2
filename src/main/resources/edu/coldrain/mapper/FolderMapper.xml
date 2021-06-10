@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.coldrain.mapper.FolderMapper">
+
+	<!-- 폴더 목록 -->
+	<select id="getList" resultType="edu.coldrain.domain.FolderVO">
+		<![CDATA[
+			SELECT /*+ INDEX_DESC(TBL_FOLDER PK_FOLDER)*/TBL_FOLDER.* 
+			FROM TBL_FOLDER
+		]]>
+	</select>
+	
+	<!-- 폴더 등록 -->
+	<insert id="insert">
+		<![CDATA[
+			INSERT INTO TBL_FOLDER (FNO, FOLDER_NAME, REGDATE, UPDATEDATE)
+			VALUES (SEQ_FOLDER.NEXTVAL, #{folder_name}, SYSDATE, SYSDATE)
+		]]>
+	</insert>
+	
+	<!-- 폴더 조회 -->
+	<select id="read" resultType="edu.coldrain.domain.FolderVO">
+		<![CDATA[
+			SELECT TBL_FOLDER.*
+			FROM TBL_FOLDER
+			WHERE FNO = #{fno}
+		]]>
+	</select>
+	
+	<!-- 폴더 수정 -->
+	<update id="update">
+		<![CDATA[
+			UPDATE TBL_FOLDER
+			SET FOLDER_NAME = #{folder_name},
+			UPDATEDATE = SYSDATE
+			WHERE FNO = #{fno}
+		]]>
+	</update>
+	
+	<!-- 폴더 삭제 -->
+	<delete id="delete">
+		<![CDATA[
+			DELETE FROM TBL_FOLDER
+			WHERE FNO = #{fno}
+		]]>
+	</delete>
+
+</mapper>
