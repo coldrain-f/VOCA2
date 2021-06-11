@@ -4,7 +4,7 @@ import java.util.List;
 
 import edu.coldrain.domain.CategoryVO;
 
-public interface CatrgoryMapper {
+public interface CategoryMapper {
 	
 	public List<CategoryVO> getList();
 	
