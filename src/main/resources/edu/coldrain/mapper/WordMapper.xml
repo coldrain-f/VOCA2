@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.coldrain.mapper.WordMapper">
+	
+	<select id="getList" resultType="edu.coldrain.domain.WordVO">
+		<![CDATA[
+			SELECT /*+ INDEX_DESC(TBL_WORD PK_WORD)*/TBL_WORD.*
+			FROM TBL_WORD
+		]]>
+	</select>
+	
+	<insert id="insert">
+		<![CDATA[
+			INSERT INTO TBL_WORD (WNO, WORD_NAME, WORD_MEANING, REGDATE, UPDATEDATE, STATE, CNO)
+			VALUES (SEQ_WORD.NEXTVAL, #{word_name}, #{word_meaning}, SYSDATE, SYSDATE, #{state}, #{cno})
+		]]>
+	</insert>
+	
+	<select id="read" resultType="edu.coldrain.domain.WordVO">
+		<![CDATA[
+			SELECT TBL_WORD.*
+			FROM TBL_WORD
+			WHERE WNO = #{wno}
+		]]>
+	</select>
+	
+	<update id="update">
+		<![CDATA[
+			UPDATE TBL_WORD SET
+			WORD_NAME = #{word_name},
+			WORD_MEANING = #{word_meaning},
+			UPDATEDATE = SYSDATE,
+			STATE = #{state},
+			CNO = #{cno}
+			WHERE WNO = #{wno}
+		]]>
+	</update>
+	
+	<delete id="delete">
+		<![CDATA[
+			DELETE FROM TBL_WORD
+			WHERE WNO = #{wno}
+		]]>
+	</delete>
+	
+</mapper>
