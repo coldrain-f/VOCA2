@@ -21,7 +21,7 @@ public class WordServiceImpl implements WordService {
 
 	@Override
 	public int register(WordVO word) {
-		return mapper.insert(word);
+		return mapper.insertSelectKey(word);
 	}
 
 	@Override

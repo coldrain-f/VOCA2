@@ -43,6 +43,18 @@ public class CategoryMapperTests {
 		log.info("INSERT COUNT = " + count);
 	}
 	
+	@Test //문제 있음 cno가 1이 더 증가해서 들어간다.
+	public void testInsertSelectKey() {
+		CategoryVO category = new CategoryVO();
+		category.setCategory_name("Unut 09 - 테스트3");
+		category.setState("NEW");
+		category.setFno(1);
+		
+		int count = mapper.insertSelectKey(category);
+		log.info("INSERT SELECT KEY COUNT = " + count);
+		log.info("CATEGORY.CNO = " + category.getCno());
+	}
+	
 	@Test
 	public void testRead() {
 		CategoryVO category = mapper.read(22);

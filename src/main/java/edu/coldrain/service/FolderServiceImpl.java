@@ -21,7 +21,7 @@ public class FolderServiceImpl implements FolderService {
 
 	@Override
 	public int register(FolderVO folder) {
-		return mapper.insert(folder);
+		return mapper.insertSelectKey(folder);
 	}
 
 	@Override

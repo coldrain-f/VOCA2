@@ -20,6 +20,18 @@
 		]]>
 	</insert>
 	
+	<!-- 폴더 등록 (selectKey 사용) -->
+	<insert id="insertSelectKey">
+		<selectKey keyProperty="fno" order="BEFORE" resultType="int" >
+			SELECT SEQ_FOLDER.NEXTVAL FROM DUAL
+		</selectKey>
+		
+		<![CDATA[
+			INSERT INTO TBL_FOLDER (FNO, FOLDER_NAME, REGDATE, UPDATEDATE)
+			VALUES (#{fno}, #{folder_name}, SYSDATE, SYSDATE)
+		]]>
+	</insert>
+	
 	<!-- 폴더 조회 -->
 	<select id="read" resultType="edu.coldrain.domain.FolderVO">
 		<![CDATA[

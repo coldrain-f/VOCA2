@@ -43,6 +43,16 @@ public class FolderMapperTests {
 	}
 	
 	@Test
+	public void testInsertSelectKey() {
+		FolderVO folder = new FolderVO();
+		folder.setFolder_name("일본어 터잡기");
+		
+		int count = mapper.insertSelectKey(folder);
+		log.info("INSERT SELECT KEY COUNT = " + count);
+		log.info("FOLDER.FNO = " + folder.getFno());
+	}
+	
+	@Test
 	public void testRead() {
 		FolderVO folder = mapper.read(2);
 		log.info("folder = " + folder);
@@ -58,7 +68,7 @@ public class FolderMapperTests {
 	
 	@Test
 	public void testDelete() {
-		int deleteCount = mapper.delete(22);
+		int deleteCount = mapper.delete(42);
 		log.info("deleteCount = " + deleteCount);
 	}
 }

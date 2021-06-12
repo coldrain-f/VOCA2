@@ -22,7 +22,7 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	public int register(CategoryVO category) {
-		return mapper.insert(category);
+		return mapper.insertSelectKey(category);
 	}
 
 	@Override

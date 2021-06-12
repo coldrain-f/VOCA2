@@ -18,6 +18,17 @@
 		]]>
 	</insert>
 	
+	<insert id="insertSelectKey">
+		<selectKey keyProperty="wno" order="BEFORE" resultType="int">
+			SELECT SEQ_WORD.NEXTVAL FROM DUAL
+		</selectKey>
+		
+		<![CDATA[
+			INSERT INTO TBL_WORD (WNO, WORD_NAME, WORD_MEANING, REGDATE, UPDATEDATE, STATE, CNO)
+			VALUES (#{wno}, #{word_name}, #{word_meaning}, SYSDATE, SYSDATE, #{state}, #{cno})
+		]]>
+	</insert>
+	
 	<select id="read" resultType="edu.coldrain.domain.WordVO">
 		<![CDATA[
 			SELECT TBL_WORD.*

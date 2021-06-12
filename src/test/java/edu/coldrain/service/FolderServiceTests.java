@@ -39,6 +39,7 @@ public class FolderServiceTests {
 		folder.setFolder_name("일본어 상용한자 2160자");
 		int insertCount = service.register(folder);
 		log.info("insertCount = " + insertCount);
+		log.info("FOLDER.FNO = " + folder.getFno());
 	}
 	
 	@Test
@@ -59,7 +60,7 @@ public class FolderServiceTests {
 	
 	@Test
 	public void testRemove() {
-		boolean removeSuccess = service.remove(24);
+		boolean removeSuccess = service.remove(43);
 		log.info("remove success = " + removeSuccess);
 		
 		service.getList().forEach(board -> log.info(board));

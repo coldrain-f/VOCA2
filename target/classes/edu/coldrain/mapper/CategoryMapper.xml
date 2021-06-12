@@ -20,6 +20,18 @@
 		]]>
 	</insert>
 	
+	<!-- 카테고리 추가 (selectKey 사용) -->
+	<insert id="insertSelectKey">
+		<selectKey keyProperty="cno" order="BEFORE" resultType="int">
+			SELECT SEQ_CATEGORY.NEXTVAL FROM DUAL
+		</selectKey>
+		
+		<![CDATA[
+			INSERT INTO TBL_CATEGORY (CNO, CATEGORY_NAME, REGDATE, UPDATEDATE, STATE, FNO)
+			VALUES (#{cno}, #{category_name}, SYSDATE, SYSDATE, #{state}, #{fno})
+		]]>
+	</insert>
+	
 	<!-- 카테고리 조회 -->
 	<select id="read" resultType="edu.coldrain.domain.CategoryVO">
 		<![CDATA[

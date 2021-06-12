@@ -10,6 +10,8 @@ public interface CategoryMapper {
 	
 	public int insert(CategoryVO category);
 	
+	public int insertSelectKey(CategoryVO category);
+	
 	public CategoryVO read(int cno);
 	
 	public int update(CategoryVO category);

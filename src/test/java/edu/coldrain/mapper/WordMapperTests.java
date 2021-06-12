@@ -45,6 +45,19 @@ public class WordMapperTests {
 	}
 	
 	@Test
+	public void testInsertSelectKey() {
+		WordVO word = new WordVO();
+		word.setWord_name("tasty");
+		word.setWord_meaning("맛있는");
+		word.setState("NEW");
+		word.setCno(1);
+		
+		int count = mapper.insertSelectKey(word);
+		log.info("INSERT SELECT KEY COUNT = " + count);
+		log.info("WORD.WNO = " + word.getWno());
+	}
+	
+	@Test
 	public void testRead() {
 		WordVO word = mapper.read(22);
 		log.info("WORD = " + word);

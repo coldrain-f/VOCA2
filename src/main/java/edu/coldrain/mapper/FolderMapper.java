@@ -10,6 +10,8 @@ public interface FolderMapper {
 	
 	public int insert(FolderVO folder);
 	
+	public int insertSelectKey(FolderVO folder);
+	
 	public FolderVO read(int fno);
 	
 	public int update(FolderVO folder);

@@ -10,6 +10,8 @@ public interface WordMapper {
 	
 	public int insert(WordVO word);
 	
+	public int insertSelectKey(WordVO word);
+	
 	public WordVO read(int wno);
 	
 	public int update(WordVO word);
