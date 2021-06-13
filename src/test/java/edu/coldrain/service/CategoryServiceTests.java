@@ -41,6 +41,7 @@ public class CategoryServiceTests {
 		
 		int count = service.register(category);
 		log.info("INSERT COUNT = " + count);
+		log.info("CATEGORY.CNO = " + category.getCno());
 	}
 	
 	@Test

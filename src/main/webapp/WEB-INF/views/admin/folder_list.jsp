@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%@include file="includes/header.jsp" %>
 
@@ -57,38 +59,24 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td><input type="checkbox"></td>
-                                            <td>1</td>
-                                            <td>단어가 읽기다 기본편</td>
-                                            <td>2021-06-06</td>
-                                            <td>2021-06-08</td>
-                                            <td class="text-center">
-                                                <button class="btn text-dark p-0 modalEventButton" type="button" data-toggle="modal" data-target="#modifyModal">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button class="btn text-dark p-0 ml-1 modalEventButton" type="button" data-toggle="modal" data-target="#deleteModal">
-                                                    <i class="fas fa-trash-alt"></i>
-                                                </button>
-                                            </td>
-                                            <td class="text-center"><span class="badge badge-pill badge-info">NEW</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="checkbox"></td>
-                                            <td>2</td>
-                                            <td>단어가 읽기다 실전편</td>
-                                            <td>2021-06-06</td>
-                                            <td>2021-06-08</td>
-                                            <td class="text-center">
-                                                <button class="btn text-dark p-0 modalEventButton" type="button" data-toggle="modal" data-target="#modifyModal">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button class="btn text-dark p-0 ml-1 modalEventButton" type="button" data-toggle="modal" data-target="#deleteModal">
-                                                    <i class="fas fa-trash-alt"></i>
-                                                </button>
-                                            </td>
-                                            <td class="text-center"><span class="badge badge-pill badge-info">NEW</span></td>
-                                        </tr>
+                                    	<c:forEach var="folder" items="${folderList }">
+                                    		<tr>
+                                    			<td><input type="checkbox"></td>
+	                                            <td><c:out value="${folder.fno }" /></td>
+	                                            <td><c:out value="${folder.folder_name }" /></td>
+	                                            <td><fmt:formatDate value="${folder.regdate }" pattern="yyyy년 MM월 dd일 hh시 mm분 ss초"/></td>
+	                                            <td><fmt:formatDate value="${folder.updatedate }" pattern="yyyy년 MM월 dd일 hh시 mm분 ss초"/></td>
+	                                            <td class="text-center">
+	                                                <button class="btn text-dark p-0 modalEventButton" type="button" data-toggle="modal" data-target="#modifyModal">
+	                                                    <i class="fas fa-edit"></i>
+	                                                </button>
+	                                                <button class="btn text-dark p-0 ml-1 modalEventButton" type="button" data-toggle="modal" data-target="#deleteModal">
+	                                                    <i class="fas fa-trash-alt"></i>
+	                                                </button>
+	                                            </td>
+	                                            <td class="text-center"><span class="badge badge-pill badge-info">NEW</span></td>
+                                    		</tr>
+                                    	</c:forEach>
                                     </tbody>
                                 </table>
                             </div>
@@ -97,7 +85,7 @@
 
                             <!-- 폴더 수정하기 모달창 -->
                             <div class="modal fade" id="modifyModal" tabindex="-1" aria-hidden="true">
-                                <form action="" method="POST">
+                                <form action="/admin/folder/modify" method="POST">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -145,7 +133,7 @@
 
                             <!-- 폴더 삭제하기 모달창  -->
                             <div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
-                                <form action="" method="POST">
+                                <form action="/admin/folder/remove" method="POST">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -209,7 +197,7 @@
 
                             <!-- 폴더 추가하기 모달창 -->
                             <div class="modal fade" id="addModal" tabindex="-1" aria-hidden="true">
-                                <form action="" method="POST">
+                                <form action="/admin/folder/register" method="POST">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%@include file="includes/header.jsp" %>
 
@@ -70,87 +72,25 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td><input type="checkbox"></td>
-                                            <td>5</td>
-                                            <td>Unit 05 - 취미1</td>
-                                            <td>2021-06-06</td>
-                                            <td>2021-06-08</td>
-                                            <td class="text-center">
-                                                <button class="btn text-dark p-0 modalEventButton" type="button" data-toggle="modal" data-target="#modifyModal">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button class="btn text-dark p-0 ml-1 modalEventButton" type="button" data-toggle="modal" data-target="#deleteModal">
-                                                    <i class="fas fa-trash-alt"></i>
-                                                </button>
-                                                
-                                            </td>
-                                            <td class="text-center"><span class="badge badge-pill badge-info">NEW</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="checkbox"></td>
-                                            <td>4</td>
-                                            <td>Unit 04 - 신체</td>
-                                            <td>2021-06-06</td>
-                                            <td>2021-06-08</td>
-                                            <td class="text-center">
-                                                <button class="btn text-dark p-0 modalEventButton" type="button" data-toggle="modal" data-target="#modifyModal">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button class="btn text-dark p-0 ml-1 modalEventButton" type="button" data-toggle="modal" data-target="#deleteModal">
-                                                    <i class="fas fa-trash-alt"></i>
-                                                </button>
-                                            </td>
-                                            <td class="text-center"><span class="badge badge-pill badge-secondary">OLD</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="checkbox"></td>
-                                            <td>3</td>
-                                            <td>Unit 03 - 일상2</td>
-                                            <td>2021-06-06</td>
-                                            <td>2021-06-08</td>
-                                            <td class="text-center">
-                                                <button class="btn text-dark p-0 modalEventButton" type="button" data-toggle="modal" data-target="#modifyModal">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button class="btn text-dark p-0 ml-1 modalEventButton" type="button" data-toggle="modal" data-target="#deleteModal">
-                                                    <i class="fas fa-trash-alt"></i>
-                                                </button>
-                                            </td>
-                                            <td class="text-center"><span class="badge badge-pill badge-secondary">OLD</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="checkbox"></td>
-                                            <td>2</td>
-                                            <td>Unit 02 - 일상1</td>
-                                            <td>2021-06-06</td>
-                                            <td>2021-06-08</td>
-                                            <td class="text-center">
-                                                <button class="btn text-dark p-0 modalEventButton" type="button" data-toggle="modal" data-target="#modifyModal">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button class="btn text-dark p-0 ml-1 modalEventButton" type="button" data-toggle="modal" data-target="#deleteModal">
-                                                    <i class="fas fa-trash-alt"></i>
-                                                </button>
-                                            </td>
-                                            <td class="text-center"><span class="badge badge-pill badge-secondary">OLD</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="checkbox"></td>
-                                            <td>1</td>
-                                            <td>Unit 01 - 요리</td>
-                                            <td>2021-06-06</td>
-                                            <td>2021-06-08</td>
-                                            <td class="text-center">
-                                                <button class="btn text-dark p-0 modalEventButton" type="button" data-toggle="modal" data-target="#modifyModal">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button class="btn text-dark p-0 ml-1 modalEventButton" type="button" data-toggle="modal" data-target="#deleteModal">
-                                                    <i class="fas fa-trash-alt"></i>
-                                                </button>
-                                            </td>
-                                            <td class="text-center"><span class="badge badge-pill badge-secondary">OLD</span></td>
-                                        </tr>
+                                    	<c:forEach var="category" items="${categoryList }">
+	                                        <tr>
+	                                            <td><input type="checkbox"></td>
+	                                            <td><c:out value="${category.cno }" /></td>
+	                                            <td><c:out value="${category.category_name }" /></td>
+	                                            <td><fmt:formatDate value="${category.regdate }" pattern="yyyy년 MM월 dd일 yy시 mm분 ss초" /></td>
+	                                            <td><fmt:formatDate value="${category.updatedate }" pattern="yyyy년 MM월 dd일 yy시 mm분 ss초" /></td>
+	                                            <td class="text-center">
+	                                                <button class="btn text-dark p-0 modalEventButton" type="button" data-toggle="modal" data-target="#modifyModal">
+	                                                    <i class="fas fa-edit"></i>
+	                                                </button>
+	                                                <button class="btn text-dark p-0 ml-1 modalEventButton" type="button" data-toggle="modal" data-target="#deleteModal">
+	                                                    <i class="fas fa-trash-alt"></i>
+	                                                </button>
+	                                                
+	                                            </td>
+	                                            <td class="text-center"><span class="badge badge-pill badge-info">NEW</span></td>
+	                                        </tr>
+                                    	</c:forEach>
                                     </tbody>
                                 </table>
                             </div>
@@ -158,7 +98,7 @@
 
                             <!-- 카테고리 수정 모달창 -->
                             <div class="modal fade" id="modifyModal" tabindex="-1" aria-hidden="true">
-                                <form action="" method="GET">
+                                <form action="/admin/category/modify" method="post">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -209,7 +149,7 @@
 
                             <!-- 카테고리 삭제 모달창 -->
                             <div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
-                                <form action="" method="POST">
+                                <form action="/admin/category/remove" method="POST">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -259,7 +199,7 @@
     
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">취소하기</button>
-                                                <button type="button" class="btn btn-primary">삭제하기</button>
+                                                <button type="submit" class="btn btn-primary">삭제하기</button>
                                             </div>
                                         </div>
                                     </div>
@@ -270,7 +210,7 @@
 
                             <!-- 카테고리 추가 모달창 -->
                             <div class="modal fade" id="addModal" tabindex="-1" aria-hidden="true">
-                                <form action="" method="GET">
+                                <form action="/admin/category/register" method="post">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -437,28 +377,28 @@
     </script>
 
     <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="/resources/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="/resources/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
+    <script src="/resources/js/demo/datatables-demo.js"></script>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/resources/vendor/jquery/jquery.min.js"></script>
+    <script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="/resources/js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="/resources/vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
+    <script src="/resources/js/demo/chart-area-demo.js"></script>
+    <script src="/resources/js/demo/chart-pie-demo.js"></script>
 
 </body>
 

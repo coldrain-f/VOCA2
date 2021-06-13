@@ -11,4 +11,5 @@ public class FolderVO {
 	private Date regdate;
 	private Date updatedate;
 	
+	
 }

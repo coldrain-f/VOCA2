@@ -42,6 +42,7 @@ public class WordServiceTests {
 		
 		int count = service.register(word);
 		log.info("REGISTER COUNT = " + count);
+		log.info("WORD.WNO = " + word.getWno());
 	}
 	
 	@Test
