@@ -106,8 +106,39 @@
                                     </tbody>
                                 </table>
                             </div>
-
                             
+                            <!-- 추가, 수정, 삭제 완료 모달창 -->
+                            <div class="modal fade" id="resultModal" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">상태</h5>
+                                            <button type="button" class="close" data-dismiss="modal">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p id="result"></p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">확인</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <script>
+                            	$(document).ready(function(){
+	                                var stateMessage = "<c:out value='${stateMessage }' />";
+	                                
+	                                if (stateMessage != '') {	                                	
+		                                var result = document.getElementById("result").innerText = stateMessage;
+		                                $("#resultModal").modal("show");                            		
+	                                }
+	                                
+                            	});
+                            </script>
+                            <!-- //추가, 수정, 삭제 완료 모달창 -->
 
                             <!-- 단어 수정 모달창 -->
                             <div class="modal fade" id="modifyModal" tabindex="-1" aria-hidden="true">
