@@ -14,6 +14,8 @@ public interface FolderMapper {
 	
 	public FolderVO read(int fno);
 	
+	public FolderVO readByFolderName(String folder_name);
+	
 	public int update(FolderVO folder);
 	
 	public int delete(int fno);

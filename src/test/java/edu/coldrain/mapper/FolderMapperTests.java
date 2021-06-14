@@ -43,6 +43,12 @@ public class FolderMapperTests {
 	}
 	
 	@Test
+	public void testReadByFolderName() {
+		FolderVO folder = mapper.readByFolderName("단어가 읽기다 기본편");
+		log.info("FOLDER = " + folder);
+	}
+	
+	@Test
 	public void testInsertSelectKey() {
 		FolderVO folder = new FolderVO();
 		folder.setFolder_name("일본어 터잡기");

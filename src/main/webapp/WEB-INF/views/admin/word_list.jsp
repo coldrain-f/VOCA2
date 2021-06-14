@@ -80,6 +80,8 @@
                                             <th>WNO</th>
                                             <th>WORD_NAME</th>
                                             <th>WORD_MEANING</th>
+                                            <th>REGDATE</th>
+                                            <th>UPDATEDATE</th>
                                             <th class="text-center">ACTIONS</th>
                                             <th class="text-center">STATE</th>
                                         </tr>
@@ -91,6 +93,8 @@
 	                                            <td><c:out value="${word.wno }" /></td>
 	                                            <td><c:out value="${word.word_name }" /></td>
 	                                            <td><c:out value="${word.word_meaning }" /></td>
+	                                            <td><fmt:formatDate value="${word.regdate }" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+	                                            <td><fmt:formatDate value="${word.updatedate }" pattern="yyyy-MM-dd hh:mm:ss" /></td>
 	                                            <td class="text-center">
 	                                                <button class="btn text-dark p-0 modalEventButton" type="button" data-toggle="modal" data-target="#modifyModal">
 	                                                    <i class="fas fa-edit"></i>

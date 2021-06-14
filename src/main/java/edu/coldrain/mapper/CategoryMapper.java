@@ -8,6 +8,8 @@ public interface CategoryMapper {
 	
 	public List<CategoryVO> getList();
 	
+	public List<CategoryVO> getListByFno(int fno);
+	
 	public int insert(CategoryVO category);
 	
 	public int insertSelectKey(CategoryVO category);

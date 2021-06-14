@@ -8,6 +8,8 @@ public interface CategoryService {
 
 	public List<CategoryVO> getList();
 	
+	public List<CategoryVO> getListByFno(int fno);
+	
 	public int register(CategoryVO category);
 	
 	public CategoryVO get(int cno);

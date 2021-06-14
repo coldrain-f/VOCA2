@@ -28,6 +28,11 @@ public class FolderServiceImpl implements FolderService {
 	public FolderVO get(int fno) {
 		return mapper.read(fno);
 	}
+	
+	@Override
+	public FolderVO getByFolderName(String folder_name) {
+		return mapper.readByFolderName(folder_name);
+	}
 
 	@Override
 	public boolean modify(FolderVO folder) {
@@ -38,5 +43,7 @@ public class FolderServiceImpl implements FolderService {
 	public boolean remove(int fno) {
 		return mapper.delete(fno) == 1;
 	}
+
+	
 
 }

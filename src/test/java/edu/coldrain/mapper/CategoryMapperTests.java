@@ -33,6 +33,12 @@ public class CategoryMapperTests {
 	}
 	
 	@Test
+	public void testGetListByFno() {
+		List<CategoryVO> categoryList = mapper.getListByFno(2);
+		categoryList.forEach(category -> log.info(category));
+	}
+	
+	@Test
 	public void testInsert() {
 		CategoryVO category = new CategoryVO();
 		category.setCategory_name("Unit 06 - 테스트");

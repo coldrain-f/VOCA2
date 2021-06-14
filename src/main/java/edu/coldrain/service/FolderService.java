@@ -12,6 +12,8 @@ public interface FolderService {
 	
 	public FolderVO get(int fno);
 	
+	public FolderVO getByFolderName(String folder_name);
+	
 	public boolean modify(FolderVO folder);
 	
 	public boolean remove(int fno);

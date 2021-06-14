@@ -64,8 +64,8 @@
                                     			<td><input type="checkbox"></td>
 	                                            <td><c:out value="${folder.fno }" /></td>
 	                                            <td><c:out value="${folder.folder_name }" /></td>
-	                                            <td><fmt:formatDate value="${folder.regdate }" pattern="yyyy년 MM월 dd일 hh시 mm분 ss초"/></td>
-	                                            <td><fmt:formatDate value="${folder.updatedate }" pattern="yyyy년 MM월 dd일 hh시 mm분 ss초"/></td>
+	                                            <td><fmt:formatDate value="${folder.regdate }" pattern="yyyy-MM-dd hh:mm:ss"/></td>
+	                                            <td><fmt:formatDate value="${folder.updatedate }" pattern="yyyy-MM-dd hh:mm:ss"/></td>
 	                                            <td class="text-center">
 	                                                <button class="btn text-dark p-0 modalEventButton" type="button" data-toggle="modal" data-target="#modifyModal">
 	                                                    <i class="fas fa-edit"></i>

@@ -12,6 +12,15 @@
 		]]>
 	</select>
 	
+	<!-- 폴더의 이름으로 해당하는 폴더의 번호 가져오기 -->
+	<select id="readByFolderName" resultType="edu.coldrain.domain.FolderVO">
+		<![CDATA[
+			SELECT TBL_FOLDER.*
+			FROM TBL_FOLDER
+			WHERE FOLDER_NAME = #{folder_name}
+		]]>
+	</select>
+	
 	<!-- 폴더 등록 -->
 	<insert id="insert">
 		<![CDATA[

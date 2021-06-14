@@ -19,6 +19,11 @@ public class CategoryServiceImpl implements CategoryService {
 		
 		return mapper.getList();
 	}
+	
+	@Override
+	public List<CategoryVO> getListByFno(int fno) {
+		return mapper.getListByFno(fno);
+	}
 
 	@Override
 	public int register(CategoryVO category) {
@@ -39,6 +44,8 @@ public class CategoryServiceImpl implements CategoryService {
 	public boolean remove(int cno) {
 		return mapper.delete(cno) == 1;
 	}
+
+	
 
 	
 	

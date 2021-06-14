@@ -33,6 +33,12 @@ public class CategoryServiceTests {
 	}
 	
 	@Test
+	public void testGetListByFno() {
+		List<CategoryVO> list = service.getListByFno(2);
+		list.forEach(category -> log.info(category));
+	}
+	
+	@Test
 	public void testRegister() {
 		CategoryVO category = new CategoryVO();
 		category.setCategory_name("Unit 06 - 테스트");

@@ -49,6 +49,12 @@ public class FolderServiceTests {
 	}
 	
 	@Test
+	public void testGetByFolderName() {
+		FolderVO folder = service.getByFolderName("단어가 읽기다 기본편");
+		log.info("FOLDER = " + folder);
+	}
+	
+	@Test
 	public void testModify() {
 		FolderVO folder = service.get(24);
 		folder.setFolder_name("일본어 상용한자 2160자 (수정)");

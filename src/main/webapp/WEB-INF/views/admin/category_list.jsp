@@ -10,12 +10,15 @@
                     <div class="card shadow">
                         <div class="card-header">
                             <!-- 카테고리 조회 폼 -->
-                            <form action="" method="GET">
+                            <form action="/admin/category/list" method="get">
                                 <div class="row mb-4 pl-2 pr-2">
                                     <label for="category-select" class="form-label">폴더</label>
                                     <select class="custom-select" name="folder_name" id="category-select">
-                                        <option value="단어가 읽기다 - 기본편" selected>단어가 읽기다 기본편</option>
-                                        <option value="단어가 읽기다 - 실전편">단어가 읽기다 실전편</option>
+                                   		<c:forEach var="folder" items="${folderList }">
+                                   			<option value="<c:out value="${folder.folder_name }" />" ${folder.folder_name eq selectedFolder.folder_name ? 'selected' : ''}>
+                                   				<c:out value="${folder.folder_name }" />
+                                   			</option>
+                                   		</c:forEach>
                                     </select>
                                 </div>
     

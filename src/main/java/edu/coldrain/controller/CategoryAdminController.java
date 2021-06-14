@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.coldrain.domain.CategoryVO;
+import edu.coldrain.domain.FolderVO;
 import edu.coldrain.service.CategoryService;
+import edu.coldrain.service.FolderService;
 import edu.coldrain.type.CRUDRequestType;
 import edu.coldrain.type.DomainType;
 import edu.coldrain.util.StateMessageResolver;
@@ -23,15 +25,34 @@ import lombok.extern.log4j.Log4j;
 public class CategoryAdminController {
 
 	@Autowired
-	private CategoryService service;
+	private CategoryService categoryService;
+	
+	@Autowired
+	private FolderService folderService;
 	
 	@GetMapping("/list")
-	public String list(Model model) {
+	public String list(FolderVO folder, Model model) {
 		log.info("CategoryAdminController.list()");
 	
-		List<CategoryVO> categoryList = service.getList();
-		categoryList.forEach(category -> log.info(category));
-		model.addAttribute("categoryList", categoryList);
+		//폴더 리스트 가져오기
+		List<FolderVO> folderList = folderService.getList();
+		folderList.forEach(f -> log.info(f));
+		model.addAttribute("folderList", folderList);
+		
+		log.info("GET FOLDER = " + folder);
+		
+		if(folder.getFolder_name() != null) {
+			//조회된 폴더의 이름으로 카테고리 리스트 가져오기 getListByFno()
+			int fno = folderService.getByFolderName(folder.getFolder_name()).getFno();
+			log.info("FNO = " + fno);
+			List<CategoryVO> categoryList = categoryService.getListByFno(fno);
+			categoryList.forEach(category -> log.info(category));
+			model.addAttribute("categoryList", categoryList);
+			
+			FolderVO selectedFolder = folderService.getByFolderName(folder.getFolder_name());
+			model.addAttribute("selectedFolder", selectedFolder);
+		}
+		
 		
 		return "/admin/category_list";
 	}
@@ -41,7 +62,7 @@ public class CategoryAdminController {
 		log.info("CategoryAdminController.remove()");
 		
 		log.info("CATEGORY = " + category);
-		boolean success = service.remove(category.getCno());
+		boolean success = categoryService.remove(category.getCno());
 		log.info("CATEGORY REMOVE SUCCESS = " + success);
 		
 		StateMessageResolver mr = 
@@ -61,7 +82,7 @@ public class CategoryAdminController {
 		category.setState("NEW");
 		
 		log.info("CATEGORY = " + category);
-		boolean success = service.modify(category);
+		boolean success = categoryService.modify(category);
 		log.info("MODIFY SUCCESS = " + success);
 		
 		StateMessageResolver mr = 
@@ -84,7 +105,7 @@ public class CategoryAdminController {
 		category.setFno(1);
 		
 		log.info("CATEGORY = " + category);
-		boolean success = ( service.register(category) == 1 );
+		boolean success = ( categoryService.register(category) == 1 );
 		log.info("CATEGORY REGISTER SUCCESS = " + success);
 		
 		StateMessageResolver mr = 
