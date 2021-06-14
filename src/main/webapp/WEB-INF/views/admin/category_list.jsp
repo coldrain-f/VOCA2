@@ -80,8 +80,8 @@
 	                                            <td><input type="checkbox"></td>
 	                                            <td><c:out value="${category.cno }" /></td>
 	                                            <td><c:out value="${category.category_name }" /></td>
-	                                            <td><fmt:formatDate value="${category.regdate }" pattern="yyyy년 MM월 dd일 yy시 mm분 ss초" /></td>
-	                                            <td><fmt:formatDate value="${category.updatedate }" pattern="yyyy년 MM월 dd일 yy시 mm분 ss초" /></td>
+	                                            <td><fmt:formatDate value="${category.regdate }" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+	                                            <td><fmt:formatDate value="${category.updatedate }" pattern="yyyy-MM-dd hh:mm:ss" /></td>
 	                                            <td class="text-center">
 	                                                <button class="btn text-dark p-0 modalEventButton" type="button" data-toggle="modal" data-target="#modifyModal">
 	                                                    <i class="fas fa-edit"></i>
@@ -145,7 +145,8 @@
                                             </div>
                                             <div class="modal-body">
                                                 <label class="form-label" for="modify_folder_name">폴더</label>
-                                                <input type="text" class="form-control" name="folder_name" id="modify_folder_name" value="단어가 읽기다 기본편" readonly />
+                                                <input type="text" class="form-control" name="folder_name" id="modify_folder_name" 
+                                                	value="<c:out value="${selectedFolder.folder_name }" />" readonly />
     
                                                 <label class="form-label mt-2" for="modify_cno">번호</label>
                                                 <input class="form-control" type="text" name="cno" id="modify_category_cno" value="5" readonly />
@@ -196,7 +197,8 @@
                                             </div>
                                             <div class="modal-body">
                                                 <label class="form-label" for="remove_folder_name">폴더</label>
-                                                <input type="text" class="form-control" name="folder_name" id="remove_folder_name" value="단어가 읽기다 기본편" readonly >
+                                                <input type="text" class="form-control" name="folder_name" id="remove_folder_name" 
+                                                	value="<c:out value="${selectedFolder.folder_name }" />" readonly />
     
                                                 <label class="form-label mt-2" for="remove_category_cno">번호</label>
                                                 <input class="form-control" type="text" name="cno" id="remove_category_cno" value="5" readonly />

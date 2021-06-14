@@ -1,5 +1,7 @@
 package edu.coldrain.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +33,7 @@ public class CategoryAdminController {
 	private FolderService folderService;
 	
 	@GetMapping("/list")
-	public String list(FolderVO folder, Model model) {
+	public String list(FolderVO folder, Model model, RedirectAttributes rttr) {
 		log.info("CategoryAdminController.list()");
 	
 		//폴더 리스트 가져오기
@@ -53,12 +55,11 @@ public class CategoryAdminController {
 			model.addAttribute("selectedFolder", selectedFolder);
 		}
 		
-		
 		return "/admin/category_list";
 	}
 	
 	@PostMapping("/remove")
-	public String remove(CategoryVO category, RedirectAttributes rttr) {
+	public String remove(CategoryVO category, FolderVO folder, RedirectAttributes rttr) {
 		log.info("CategoryAdminController.remove()");
 		
 		log.info("CATEGORY = " + category);
@@ -71,11 +72,18 @@ public class CategoryAdminController {
 		
 		rttr.addFlashAttribute("stateMessage", stateMessage);
 		
-		return "redirect:/admin/category/list";
+		String encodedFolderName = "";
+		try {
+			encodedFolderName = URLEncoder.encode(folder.getFolder_name(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:/admin/category/list?folder_name=" + encodedFolderName;
 	}
 	
 	@PostMapping("/modify")
-	public String modify(CategoryVO category, RedirectAttributes rttr) {
+	public String modify(CategoryVO category, FolderVO folder, RedirectAttributes rttr) {
 		log.info("CategoryAdminController.modify()");
 		
 		//STATE SETUP
@@ -91,7 +99,14 @@ public class CategoryAdminController {
 		
 		rttr.addFlashAttribute("stateMessage", stateMessage);
 		
-		return "redirect:/admin/category/list";
+		String encodedFolderName = "";
+		try {
+			encodedFolderName = URLEncoder.encode(folder.getFolder_name(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:/admin/category/list?folder_name=" + encodedFolderName;
 	}
 	
 	@PostMapping("/register")
@@ -103,7 +118,8 @@ public class CategoryAdminController {
 		
 		//FNO SETUP
 		//폴더 이름으로 fno 조회한다.
-		int fno = folderService.getByFolderName(folder.getFolder_name())
+		String folderName = folder.getFolder_name();
+		int fno = folderService.getByFolderName(folderName)
 							   .getFno();
 		category.setFno(fno);
 		
@@ -117,6 +133,14 @@ public class CategoryAdminController {
 		
 		rttr.addFlashAttribute("stateMessage", stateMessage);
 		
-		return "redirect:/admin/category/list";
+		// URL에 한글을 실어서 보내면 깨지므로 인코딩 해준다. 
+		String encodedFolderName = "";
+		try {
+			encodedFolderName = URLEncoder.encode(folderName, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:/admin/category/list?folder_name=" + encodedFolderName;
 	}
 }
