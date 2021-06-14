@@ -258,8 +258,9 @@
                                             <div class="modal-body">
                                                 <label class="form-label" for="add_folder_name">폴더</label>
                                                 <select class="custom-select" name="folder_name" id="add_folder_name">
-                                                    <option value="단어가 읽기다 - 기본편">단어가 읽기다 기본편</option>
-                                                    <option value="단어가 읽기다 - 실전편">단어가 읽기다 실전편</option>
+                                                	<c:forEach var="folder" items="${folderList }">
+                                                		<option value="<c:out value="${folder.folder_name }" />"><c:out value="${folder.folder_name }" /></option>
+                                                	</c:forEach>
                                                 </select>
     
                                                 <label class="form-label mt-2" for="add_category_name">카테고리 이름</label>

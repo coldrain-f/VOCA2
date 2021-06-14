@@ -95,14 +95,17 @@ public class CategoryAdminController {
 	}
 	
 	@PostMapping("/register")
-	public String register(CategoryVO category, RedirectAttributes rttr) {
+	public String register(CategoryVO category, FolderVO folder, RedirectAttributes rttr) {
 		log.info("CategoryAdminController.register()");
 		
 		//STATE SETUP
 		category.setState("NEW");
 		
 		//FNO SETUP
-		category.setFno(1);
+		//폴더 이름으로 fno 조회한다.
+		int fno = folderService.getByFolderName(folder.getFolder_name())
+							   .getFno();
+		category.setFno(fno);
 		
 		log.info("CATEGORY = " + category);
 		boolean success = ( categoryService.register(category) == 1 );
