@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import edu.coldrain.domain.FolderVO;
 import edu.coldrain.domain.WordVO;
+import edu.coldrain.service.FolderService;
 import edu.coldrain.service.WordService;
 import edu.coldrain.type.CRUDRequestType;
 import edu.coldrain.type.DomainType;
@@ -23,15 +25,23 @@ import lombok.extern.log4j.Log4j;
 public class WordAdminController {
 
 	@Autowired
-	private WordService service;
+	private WordService wordService;
+	
+	@Autowired
+	private FolderService folderService;
 	
 	@GetMapping("/list")
 	public String list(Model model) {
 		log.info("WordAdminController.list()");
 		
-		List<WordVO> wordList = service.getList();
+		List<WordVO> wordList = wordService.getList();
 		wordList.forEach(word -> log.info(word));
 		model.addAttribute("wordList", wordList);
+		
+		//모든 폴더를 가지고 온다.
+		List<FolderVO> folderList = folderService.getList();
+		folderList.forEach(folder -> log.info(folder));
+		model.addAttribute("folderList", folderList);
 		
 		return "/admin/word_list";
 	}
@@ -42,7 +52,7 @@ public class WordAdminController {
 		
 		log.info("WORD = " + word);
 		
-		boolean success = service.remove(word.getWno());
+		boolean success = wordService.remove(word.getWno());
 		log.info("WORD REMOVE SUCCESS = " + success);
 		
 		StateMessageResolver mr = 
@@ -65,7 +75,7 @@ public class WordAdminController {
 		
 		log.info("WORD = " + word);
 		
-		boolean success = service.modify(word);
+		boolean success = wordService.modify(word);
 		log.info("WORD MODIFY SUCCESS = " + success);
 		
 		StateMessageResolver mr = 
@@ -88,7 +98,7 @@ public class WordAdminController {
 		
 		log.info("WORD = " + word);
 		
-		boolean success = ( service.register(word) == 1 );
+		boolean success = ( wordService.register(word) == 1 );
 		log.info("REGISTER SUCCESS = " + success);
 		
 		StateMessageResolver mr = 

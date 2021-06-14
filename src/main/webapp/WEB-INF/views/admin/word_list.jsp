@@ -8,13 +8,14 @@
                 <div class="container-fluid">
                     <div class="card shadow">
                         <div class="card-header">
-                            <form action="" method="POST">
+                            <form action="/admin/word/list" method="get">
                                 <!-- 폴더 조회 -->
                                 <div class="row mb-4 pl-2 pr-2">
                                     <label for="folder" class="form-label">폴더</label>
                                     <select class="custom-select" name="folder_name" id="folder">
-                                        <option value="단어가 읽기다 기본편">단어가 읽기다 기본편</option>
-                                        <option value="단어가 읽기다 실전편">단어가 읽기다 실전편</option>
+                                    	<c:forEach var="folder" items="${folderList }">
+                                    		<option value="<c:out value="${folder.folder_name }" />"><c:out value="${folder.folder_name }" /></option>
+                                    	</c:forEach>
                                     </select>
                                 </div>
                                 <!-- ./폴더 조회 -->

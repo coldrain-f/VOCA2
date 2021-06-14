@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -11,7 +13,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>FOLDER CRUD</title>
+    <title>SB Admin 2 - Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -22,12 +24,43 @@
     <!-- Custom styles for this template-->
     <link href="/resources/css/sb-admin-2.min.css" rel="stylesheet">
 
-    <!-- JQuery import -->
-    <script src="https://code.jquery.com/jquery-2.2.1.js"></script>
-
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
         .card { font-family: 'Noto Sans KR', sans-serif; }
+
+        /* PC 1024px ~ */
+        @media all and (min-width:1024px) {
+            .input-answer {
+                width: 300px !important;
+            }
+            .show-answer {
+                width: 498px !important;
+            }
+            .title {
+                font-size: 26px !important;
+            }
+            .state {
+                font-size: 18px !important;
+            }
+        }
+
+        /* 태블릿 가로, 태블릿 세로 768px ~ 1023px */
+        @media all and (min-width: 768px) and (max-width:1023px) {
+            .title {
+                font-size: 22px;
+            }
+            .state {
+                font-size: 16px !important;
+            }
+        }
+
+        /* 모바일 가로, 모바일 세로 480px ~ 767px */
+        @media all and (max-width: 767px) {
+            .state {
+                font-size: 14px !important;
+            }
+        }
+
     </style>
 
 </head>
@@ -72,7 +105,7 @@
                     <i class="fas fa-fw fa-table"></i>
                     <span>폴더 관리</span></a>
             </li>
-
+            
             <li class="nav-item">
                 <a class="nav-link" href="/admin/category/list">
                     <i class="fas fa-fw fa-table"></i>
@@ -305,3 +338,138 @@
 
                 </nav>
                 <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <div class="card shadow">
+                        <div class="card-header">
+                            <div class="row mb-4 pl-2 pr-2">
+                                <label for="" class="form-label">폴더</label>
+                                <select name="" id="" class="custom-select">
+                                	<c:forEach var="folder" items="${folderList }">
+                                		<option value="<c:out value="${folder.folder_name }" />" ${folder.folder_name eq '단어가 읽기다 기본편' ? 'selected' : ''}>
+                                			<c:out value="${folder.folder_name }" />
+                                		</option>
+                                	</c:forEach>
+                                </select>
+                            </div>
+                            <div class="row mb-4 pl-2 pr-2">
+                                <label for="" class="form-label">카테고리</label>
+                                <select name="" id="" class="custom-select">
+                                	<c:forEach var="category" items="${categoryList }">
+                                		<option value="<c:out value="${category.category_name }" />">
+                                			<c:out value="${category.category_name }" />
+                                		</option>
+                                	</c:forEach>
+                                </select>
+                            </div>
+                            <div class="row mb-4 pl-2 pr-2 d-flex justify-content-end">
+                                <button type="button" class="btn btn-info">학습 시작</button>
+                            </div>
+                            <hr>
+                            <div class="row pl-2 pr-2 mt-1">
+                                <h6 class="w-100 d-flex justify-content-center title mt-3">
+                                    단어가 읽기다 기본편 Unit 01 - 요리
+                                </h6>
+                                <span class="w-100 d-flex justify-content-center state" style="font-size: 12px;">1/20</span>
+                                <form action="" method="" class="form-inline d-flex justify-content-end w-100 mt-4">
+                                    <div class="input-group">
+                                        <select name="" id="speech-language" class="custom-select mr-1">
+                                            <option value="en-US" selected>영어</option>
+                                            <option value="ja-JP">일본어</option>
+                                            <option value="ko-KR">한국어</option>
+                                        </select>
+                                        <input type="text" id="speech-word" class="form-control" autocomplete="off" />
+                                        <div class="input-group-append">
+                                            <button type="button" id="speech-button" class="btn btn-outline-secondary">발음듣기</button>
+                                        </div>
+                                        <!-- TTS Script -->
+                                        <script src="/resources//js/tts.js"></script>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- <h6 class="d-flex justify-content-center">단어가 읽기다 기본편 Unit 01 - 요리</h6> -->
+                        </div>
+
+                        <div class="card-body pt-5" style="height: 330px">
+                            <div class="row d-flex justify-content-center mb-1 pt-5">
+                                <form class="form-inline" action="" method="">
+                                    <label class="form-label mr-2 mb-1" for="" style="font-size: 18px">양념</label>
+                                    <div class="input-group">
+                                        <input class="form-control input-answer" type="text" placeholder="스펠링을 입력해 주세요..." >
+                                        <div class="input-group-append">
+                                            <button type="button" class="btn btn-outline-secondary">확인</button>
+                                            <button type="button" class="btn btn-outline-secondary">모르겠어요</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="row d-flex justify-content-center">
+                                <form class="form-inline" action="" method="">
+                                    <input class="form-control show-answer mt-2" type="text" size="48" placeholder="&ldquo;모르겠어요&rdquo;를 누르면 이곳에 뜻이 표시돼요!" disabled>
+                                </form>
+                            </div>
+
+                            
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2021</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap core JavaScript-->
+    <script src="/resources/vendor/jquery/jquery.min.js"></script>
+    <script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/resources/js/sb-admin-2.min.js"></script>
+
+</body>
+
+</html>
