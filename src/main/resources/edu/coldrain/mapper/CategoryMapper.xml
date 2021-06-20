@@ -50,6 +50,14 @@
 		]]>
 	</select>
 	
+	<!-- 카테고리 이름과 부모의 폴더 번호로 카테고리 조회 -->
+	<select id="readByCategoryNameAndFno" resultType="edu.coldrain.domain.CategoryVO">
+		<![CDATA[
+			SELECT TBL_CATEGORY.* FROM TBL_CATEGORY
+			WHERE CATEGORY_NAME = #{category_name} AND FNO = #{fno}
+		]]>
+	</select>
+	
 	<!-- 카테고리 수정 -->
 	<update id="update">
 		<![CDATA[

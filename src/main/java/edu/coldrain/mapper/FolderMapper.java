@@ -19,5 +19,4 @@ public interface FolderMapper {
 	public int update(FolderVO folder);
 	
 	public int delete(int fno);
-
 }

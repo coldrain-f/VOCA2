@@ -33,6 +33,12 @@ public class WordServiceTests {
 	}
 	
 	@Test
+	public void testGetListByCno() {
+		List<WordVO> list = service.getListByCno(1);
+		list.forEach(word -> log.info(word));
+	}
+	
+	@Test
 	public void testRegister() {
 		WordVO word = new WordVO();
 		word.setWord_name("tasty");

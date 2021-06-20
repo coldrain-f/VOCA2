@@ -39,4 +39,9 @@ public class WordServiceImpl implements WordService {
 		return mapper.delete(wno) == 1;
 	}
 
+	@Override
+	public List<WordVO> getListByCno(int cno) {
+		return mapper.getListByCno(cno);
+	}
+
 }

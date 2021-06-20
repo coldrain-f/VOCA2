@@ -45,6 +45,11 @@ public class CategoryServiceImpl implements CategoryService {
 		return mapper.delete(cno) == 1;
 	}
 
+	@Override
+	public CategoryVO getByCategoryNameAndFno(String category_name, int fno) {
+		return mapper.readByCategoryNameAndFno(category_name, fno);
+	}
+
 	
 
 	

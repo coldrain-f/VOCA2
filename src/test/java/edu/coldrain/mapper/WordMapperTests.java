@@ -33,6 +33,12 @@ public class WordMapperTests {
 	}
 	
 	@Test
+	public void testGetListByCno() {
+		List<WordVO> list = mapper.getListByCno(1);
+		list.forEach(word -> log.info(word));
+	}
+	
+	@Test
 	public void testInsert() {
 		WordVO word = new WordVO();
 		word.setWord_name("tasty");

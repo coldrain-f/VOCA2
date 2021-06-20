@@ -68,6 +68,19 @@ public class CategoryMapperTests {
 	}
 	
 	@Test
+	public void testReadByCategoryNameAndFno() {
+		
+		log.info("-------------------------------------------");
+		String category_name = "Unit 02 - 일상1";
+		int fno = 1;
+		log.info("category_name = " + category_name);
+		log.info("fno = " + fno);
+		
+		CategoryVO category = mapper.readByCategoryNameAndFno(category_name, 1);
+		log.info("CATEGORYY = " + category);
+	}
+	
+	@Test
 	public void testUpdate() {
 		CategoryVO category = mapper.read(22);
 		category.setCategory_name("Unit 06 - 테스트 업데이트");

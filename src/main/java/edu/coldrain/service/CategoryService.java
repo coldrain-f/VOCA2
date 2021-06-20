@@ -14,6 +14,8 @@ public interface CategoryService {
 	
 	public CategoryVO get(int cno);
 	
+	public CategoryVO getByCategoryNameAndFno(String category_name, int fno);
+	
 	public boolean modify(CategoryVO category);
 	
 	public boolean remove(int cno);

@@ -34,8 +34,14 @@ public class CategoryServiceTests {
 	
 	@Test
 	public void testGetListByFno() {
-		List<CategoryVO> list = service.getListByFno(2);
+		List<CategoryVO> list = service.getListByFno(1);
 		list.forEach(category -> log.info(category));
+	}
+	
+	@Test
+	public void testGetByCategoryNameAndFno() {
+		CategoryVO category = service.getByCategoryNameAndFno("Unit 01 - 요리", 1);
+		log.info("CATEGORY = " + category);
 	}
 	
 	@Test

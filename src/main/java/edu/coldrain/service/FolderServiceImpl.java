@@ -44,6 +44,4 @@ public class FolderServiceImpl implements FolderService {
 		return mapper.delete(fno) == 1;
 	}
 
-	
-
 }

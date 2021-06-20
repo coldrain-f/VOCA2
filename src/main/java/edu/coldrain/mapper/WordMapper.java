@@ -8,6 +8,8 @@ public interface WordMapper {
 	
 	public List<WordVO> getList();
 	
+	public List<WordVO> getListByCno(int cno);
+	
 	public int insert(WordVO word);
 	
 	public int insertSelectKey(WordVO word);

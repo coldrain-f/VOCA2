@@ -11,6 +11,13 @@
 		]]>
 	</select>
 	
+	<select id="getListByCno" resultType="edu.coldrain.domain.WordVO">
+		<![CDATA[
+			SELECT TBL_WORD.* FROM TBL_WORD
+			WHERE CNO = #{cno}
+		]]>
+	</select>
+	
 	<insert id="insert">
 		<![CDATA[
 			INSERT INTO TBL_WORD (WNO, WORD_NAME, WORD_MEANING, REGDATE, UPDATEDATE, STATE, CNO)

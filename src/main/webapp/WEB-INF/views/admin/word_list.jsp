@@ -8,13 +8,16 @@
                 <div class="container-fluid">
                     <div class="card shadow">
                         <div class="card-header">
-                            <form action="/admin/word/list" method="get">
+                            <form action="/admin/word/list" method="get" id="folderActionForm">
                                 <!-- 폴더 조회 -->
                                 <div class="row mb-4 pl-2 pr-2">
                                     <label for="folder" class="form-label">폴더</label>
-                                    <select class="custom-select" name="folder_name" id="folder">
+                                    <select class="custom-select" name="folder_name" id="folderSelect">
                                     	<c:forEach var="folder" items="${folderList }">
-                                    		<option value="<c:out value="${folder.folder_name }" />"><c:out value="${folder.folder_name }" /></option>
+                                    		<!-- 수정본 -->
+                                    		<option value="<c:out value="${folder.folder_name }" />" ${folder.folder_name eq selectedFolder.folder_name ? 'selected' : '' }>
+                                    			<c:out value="${folder.folder_name }" />
+                                    		</option>
                                     	</c:forEach>
                                     </select>
                                 </div>
@@ -23,12 +26,12 @@
                                 <!-- 카테고리 조회 -->
                                 <div class="row mb-4 pl-2 pr-2">
                                     <label for="category" class="form-label">카테고리</label>
-                                    <select class="custom-select" name="category_name" id="category">
-                                        <option value="Unit 01 - 요리">Unit 01 - 요리</option>
-                                        <option value="Unit 02 - 일상1">Unit 02 - 일상1</option>
-                                        <option value="Unit 03 - 일상2">Unit 03 - 일상2</option>
-                                        <option value="Unit 04 - 신체">Unit 04 - 신체</option>
-                                        <option value="Unit 05 - 취미1">Unit 05 - 취미1</option>
+                                    <select class="custom-select" name="category_name" id="categorySelect">
+                                    	<c:forEach var="category" items="${categoryList }">
+                                    		<option value="<c:out value="${category.category_name }" />" ${selectedCategory.category_name eq category.category_name ? 'selected' : '' }>
+                                    			<c:out value="${category.category_name }" />
+                                    		</option>
+                                    	</c:forEach>
                                     </select>
                                 </div>
                                 <!-- ./카테고리 조회 -->
