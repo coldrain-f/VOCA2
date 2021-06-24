@@ -44,4 +44,9 @@ public class FolderServiceImpl implements FolderService {
 		return mapper.delete(fno) == 1;
 	}
 
+	@Override
+	public FolderVO getFirstRecord() {
+		return mapper.readFirstRecord();
+	}
+
 }

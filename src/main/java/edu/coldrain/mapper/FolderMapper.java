@@ -14,6 +14,8 @@ public interface FolderMapper {
 	
 	public FolderVO read(int fno);
 	
+	public FolderVO readFirstRecord();
+	
 	public FolderVO readByFolderName(String folder_name);
 	
 	public int update(FolderVO folder);

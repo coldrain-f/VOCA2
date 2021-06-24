@@ -63,6 +63,12 @@ public class CategoryServiceTests {
 	}
 	
 	@Test
+	public void testGetFirstRecordByFno() {
+		CategoryVO category = service.getFirstRecordByFno(1);
+		log.info(category);
+	}
+	
+	@Test
 	public void testModify() {
 		CategoryVO category = service.get(24);
 		category.setCategory_name("Unit 06 - 테스트2");

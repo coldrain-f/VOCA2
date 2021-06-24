@@ -21,6 +21,14 @@
 		]]>
 	</select>
 	
+	<select id="readFirstRecordByFno" resultType="edu.coldrain.domain.CategoryVO">
+		<![CDATA[
+			SELECT /*+ INDEX_ASC(TBL_CATEGORY PK_CATEGORY)*/ROWNUM RN, TBL_CATEGORY.*
+			FROM TBL_CATEGORY
+			WHERE FNO = #{fno} AND ROWNUM = 1
+		]]>
+	</select>
+	
 	<!-- 카테고리 추가 -->
 	<insert id="insert">
 		<![CDATA[

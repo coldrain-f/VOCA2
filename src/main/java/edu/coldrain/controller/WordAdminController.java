@@ -26,6 +26,18 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class WordAdminController {
 
+	/*
+	 * 작업해야 하는 내용
+	 * 1. 단어가 읽기다 기본편에서 단어를 수정, 삭제하면 첫 번째 레코드로 이동하는 현상을
+	 * 수정, 삭제 후 단어가 읽기다 기본편(수정, 삭제 작업을 한 카테고리)으로 유지가 되어야 함.
+	 * 
+	 * 2. 추가하기가 동작되지 않으니 동작되도록 수정해야 한다.
+	 * 그리고 추가하고 추가한 카테고리(단어가 읽기다 기본편의 Unit 01)를 조회하도록 설정해야 한다.
+	 * 
+	 * 3. 단어가 읽기다 테스트편2에서 단어가 읽기다 기본편으로 넘어갔을 때,
+	 * Unit 01 요리의 단어가 조회가 되지 않는다. 원인을 찾아야 한다.
+	 */
+	
 	@Autowired
 	private WordService wordService;
 	
@@ -44,13 +56,20 @@ public class WordAdminController {
 		folderList.forEach(folder -> log.info(folder));
 		model.addAttribute("folderList", folderList);
 		
-		//나중에 수정해야 한다. ( 맨 처음에 NULL일 때 처리, 나중에 맨 첫 번째 값으로 가져오도록 수정해야 한다. )
+		//첫 번째 값으로 가져오도록 수정 했다. 
 		if (folderVO.getFolder_name() == null) {
-			folderVO.setFolder_name("단어가 읽기다 테스트편");
+			folderVO = folderService.getFirstRecord();
+			
 		}
 		
+		// 나중에 수정해야 된다. ( 폴더 이름으로 조회해서 첫 번째 레코드를 가져오도록 해야 한다. )
 		if (categoryVO.getCategory_name() == null) {
-			categoryVO.setCategory_name("Unit 01 - 요리");
+			//1. 폴더 이름으로 FNO를 얻어온다.
+			FolderVO f = folderService.getByFolderName(folderVO.getFolder_name());
+			//2. 얻어온 FNO를 가지고 첫 번째 레코드를 가지고 온다.
+			//getFirstRecordByFolderName()
+			CategoryVO c = categoryService.getFirstRecordByFno(f.getFno());
+			categoryVO.setCategory_name(c.getCategory_name());
 		}
 		
 		log.info("CATEGORY_VO = " + categoryVO);
@@ -68,8 +87,12 @@ public class WordAdminController {
 		model.addAttribute("selectedCategory", selectedCategory);
 		
 		//4. 가져온 카테고리의 번호로 단어 리스트를 가지고 온다.
-		List<WordVO> wordList = wordService.getListByCno(selectedCategory.getCno());
-		model.addAttribute("wordList", wordList);
+		if (selectedCategory == null) { //가져온 카테고리가 없다면... (수정 해야 됨)
+			log.info("널입니다................................................");
+		} else {
+			List<WordVO> wordList = wordService.getListByCno(selectedCategory.getCno());
+			model.addAttribute("wordList", wordList);			
+		}
 		
 		return "/admin/word_list";
 	}

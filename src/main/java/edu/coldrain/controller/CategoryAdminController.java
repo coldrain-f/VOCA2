@@ -26,6 +26,13 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class CategoryAdminController {
 
+
+	/* 
+	 * 작업해야 하는 내용
+	 * 1. 카테고리 조회 버튼을 클릭하면 조회하지 않고
+	 * change 이벤트가 발생했을 때 자동으로 조회되도록 설정해야 한다.
+	 */
+	
 	@Autowired
 	private CategoryService categoryService;
 	

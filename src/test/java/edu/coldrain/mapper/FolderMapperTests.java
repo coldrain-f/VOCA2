@@ -65,6 +65,12 @@ public class FolderMapperTests {
 	}
 	
 	@Test
+	public void readFirstRecord() {
+		FolderVO folder = mapper.readFirstRecord();
+		log.info(folder);
+	}
+	
+	@Test
 	public void testUpdate() {
 		FolderVO folder = mapper.read(2);
 		folder.setFolder_name("단어가 읽기다 실전편");

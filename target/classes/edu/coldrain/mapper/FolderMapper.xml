@@ -21,6 +21,14 @@
 		]]>
 	</select>
 	
+	<select id="readFirstRecord" resultType="edu.coldrain.domain.FolderVO">
+		<![CDATA[
+			SELECT /*+ INDEX_DESC(TBL_FOLDER PK_FOLDER) */ROWNUM RN, TBL_FOLDER.* 
+			FROM TBL_FOLDER
+			WHERE ROWNUM = 1
+		]]>
+	</select>
+	
 	<!-- 폴더 등록 -->
 	<insert id="insert">
 		<![CDATA[

@@ -49,6 +49,12 @@ public class FolderServiceTests {
 	}
 	
 	@Test
+	public void testGetFirstRecord() {
+		FolderVO folder = service.getFirstRecord();
+		log.info(folder);
+	}
+	
+	@Test
 	public void testGetByFolderName() {
 		FolderVO folder = service.getByFolderName("단어가 읽기다 기본편");
 		log.info("FOLDER = " + folder);

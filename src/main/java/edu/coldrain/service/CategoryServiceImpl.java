@@ -50,6 +50,11 @@ public class CategoryServiceImpl implements CategoryService {
 		return mapper.readByCategoryNameAndFno(category_name, fno);
 	}
 
+	@Override
+	public CategoryVO getFirstRecordByFno(int fno) {
+		return mapper.readFirstRecordByFno(fno);
+	}
+
 	
 
 	

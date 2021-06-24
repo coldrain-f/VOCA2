@@ -68,6 +68,12 @@ public class CategoryMapperTests {
 	}
 	
 	@Test
+	public void testReadFirstRecordByFno() {
+		CategoryVO category = mapper.readFirstRecordByFno(1);
+		log.info(category);
+	}
+	
+	@Test
 	public void testReadByCategoryNameAndFno() {
 		
 		log.info("-------------------------------------------");

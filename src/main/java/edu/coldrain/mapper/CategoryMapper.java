@@ -18,6 +18,8 @@ public interface CategoryMapper {
 	
 	public CategoryVO read(int cno);
 	
+	public CategoryVO readFirstRecordByFno(int fno);
+	
 	public CategoryVO readByCategoryNameAndFno(@Param("category_name") String category_name, @Param("fno") int fno);
 	
 	public int update(CategoryVO category);
