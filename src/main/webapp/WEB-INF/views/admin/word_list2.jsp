@@ -3,20 +3,42 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@include file="includes/header.jsp" %>
-<!-- Custom JS -->
-    <script src="/resources/js/custom.js"></script>
+
+
+<script>
+	document.addEventListener("DOMContentLoaded", () => {
+		console.log("문서가 로딩되었습니다.")
+		
+		const folderSelect = document.querySelector("#folderSelect")
+		const folderActionForm = document.querySelector("#folderActionForm")
+		
+		//폴더 셀렉트의 체인지 이벤트가 발생하면
+		folderSelect.addEventListener("change", () => {
+			console.log("체인지 이벤트가 동작합니다.")
+			
+			//카테고리 값은 조회 버튼을 누르기 전까진 필요 없으므로 삭제한다.
+			$("#categorySelect option:selected").val("")
+			
+			//서버로 folderVO를 전달한다.
+			folderActionForm.submit()
+			
+		})
+		
+	})
+		
+</script>
+
 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <div class="card shadow">
                         <div class="card-header">
-                            <form action="/admin/word/list" method="get" id="folderActionForm">
+                            <form action="/admin/word/list2" method="get" id="folderActionForm">
                                 <!-- 폴더 조회 -->
                                 <div class="row mb-4 pl-2 pr-2">
                                     <label for="folder" class="form-label">폴더</label>
                                     <select class="custom-select" name="folder_name" id="folderSelect">
                                     	<c:forEach var="folder" items="${folderList }">
-                                    		<!-- 수정본 -->
-                                    		<option value="<c:out value="${folder.folder_name }" />" ${folder.folder_name eq selectedFolder.folder_name ? 'selected' : '' }>
+                                    		<option value="<c:out value="${folder.folder_name }" />" ${folderVO.folder_name eq folder.folder_name ? 'selected' : '' }>
                                     			<c:out value="${folder.folder_name }" />
                                     		</option>
                                     	</c:forEach>
@@ -29,7 +51,7 @@
                                     <label for="category" class="form-label">카테고리</label>
                                     <select class="custom-select" name="category_name" id="categorySelect">
                                     	<c:forEach var="category" items="${categoryList }">
-                                    		<option value="<c:out value="${category.category_name }" />" ${selectedCategory.category_name eq category.category_name ? 'selected' : '' }>
+                                    		<option value="<c:out value="${category.category_name }" />" ${categoryVO.category_name eq category.category_name ? 'selected' : '' }>
                                     			<c:out value="${category.category_name }" />
                                     		</option>
                                     	</c:forEach>
@@ -430,11 +452,6 @@
             document.getElementById("remove_word_name").value = word_name;
             document.getElementById("remove_word_meaning").value = word_meaning;
 
-            //추가
-            //add_folder_name
-
-            
-
             document.getElementById("modify_result0").innerText = word_name;
             document.getElementById("modify_result2").innerText = word_meaning;
 
@@ -442,13 +459,6 @@
         });
 
     </script>
-
-    <!-- Page level plugins -->
-    <script src="/resources/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="/resources/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="/resources/js/demo/datatables-demo.js"></script>
 
     <!-- Bootstrap core JavaScript-->
     <script src="/resources/vendor/jquery/jquery.min.js"></script>
@@ -460,12 +470,7 @@
     <!-- Custom scripts for all pages-->
     <script src="/resources/js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="/resources/vendor/chart.js/Chart.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="/resources/js/demo/chart-area-demo.js"></script>
-    <script src="/resources/js/demo/chart-pie-demo.js"></script>
 
 </body>
 

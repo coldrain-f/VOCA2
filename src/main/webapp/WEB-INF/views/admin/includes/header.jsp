@@ -25,9 +25,6 @@
     <!-- JQuery import -->
     <script src="https://code.jquery.com/jquery-2.2.1.js"></script>
     
-    <!-- Custom JS -->
-    <script src="/resources/js/custom.js"></script>
-
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
         .card { font-family: 'Noto Sans KR', sans-serif; }
